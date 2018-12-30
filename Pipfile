@@ -7,8 +7,7 @@ verify_ssl = true
 autopep8 = "*"
 pytest = "*"
 pytest-cov = "*"
-
-[packages]
+pylint = "*"
 
 [requires]
 python_version = "3.7"
