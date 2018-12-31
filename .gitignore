@@ -109,6 +109,8 @@ venv.bak/
 # pycharm project settings
 .idea
 
-# pytest coverage
+# pytest
 .coveragerc
 coverage_html_report
+pytest-commands.txt
+
