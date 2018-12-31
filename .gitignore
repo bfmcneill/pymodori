@@ -102,3 +102,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# VS code project settings
+.vscode
+
+# pycharm project settings
+.idea
+
+# pytest coverage
+.coveragerc
+coverage_html_report
