@@ -34,7 +34,7 @@ class Interval:
         if self.status in [interval_states["ACTIVE"], interval_states["COMPLETE"]]:
             raise ValueError("Interval has already been opened")
 
-        self.datetime_begin = datetime_round()
+        self.datetime_open = datetime_round()
         self.status = interval_states["ACTIVE"]
         
     def close(self):
@@ -42,12 +42,17 @@ class Interval:
         if self.status in [interval_states["COMPLETE"], interval_states["INITIAL"]]:
             raise ValueError("Interval must be opened before it is closed")
 
-        self.datetime_expire = datetime_round()
+        self.datetime_close = datetime_round()
+
+        if self.datetime_close == self.datetime_open:
+            self.datetime_close += timedelta(seconds=1)
+
         self.status = interval_states["COMPLETE"]
 
     def duration_calc(self):
-        """determine the length of the closed interval in seconds"""
+        """determine the interval duration in seconds"""
         if self.status in [interval_states["INITIAL"], interval_states["ACTIVE"]]:
             raise ValueError("Interval does not have duration")
+
         delta = self.datetime_close - self.datetime_open
         return delta.total_seconds()
